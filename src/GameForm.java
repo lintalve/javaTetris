@@ -9,33 +9,25 @@ public class GameForm extends JFrame{
     private JFrame frame;
     private JPanel gameAreaPlaceHolder;
 
-    /**
-     * Create the application.
-     */
     public GameForm() {
-
-        initialize();
-
-    }
-
-    /**
-     * Initialize the contents of the frame.
-     */
-    private void initialize() {
+        final int gaphWidth = 600;
+        final int gaphHeight = 1000;
+        final int gaphCells = 10;
         gameAreaPlaceHolder = new JPanel();
-        gameAreaPlaceHolder.setBounds(150, 0, 450, 600);
+        gameAreaPlaceHolder.setBounds(150, 0, gaphWidth, gaphHeight);
         int width = gameAreaPlaceHolder.getWidth();
         frame = new JFrame();
-        frame.setBounds(400, 200, 1000, 600);
-        gameAreaPlaceHolder.setBounds(frame.getBounds().width/2 - width/2, 0, 450, 600);
+        frame.setBounds(400, 200, 1000, gaphHeight);
+        gameAreaPlaceHolder.setBounds(frame.getBounds().width/2 - width/2, 0, gaphWidth, gaphHeight);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //JButton btnPress = new JButton("Press");
-        GameArea gas = new GameArea(gameAreaPlaceHolder,10);
-        frame.getContentPane().add(gas, BorderLayout.CENTER);
+        GameArea ga = new GameArea(gameAreaPlaceHolder,gaphCells);
+        frame.getContentPane().add(ga, BorderLayout.CENTER);
         frame.getContentPane().setLayout(null);
+
     }
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {

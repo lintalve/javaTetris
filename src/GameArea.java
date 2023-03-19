@@ -6,31 +6,47 @@ public class GameArea extends JPanel {     //this is area for drawing rectangles
     private int gridRows;
     private int gridColumns;
     private int gridCellSize;
+    private boolean[][] block = {{true, true}, {true, false}, {true, false}};
+    private int initialCoordinate;
 
     public GameArea(JPanel placeHolder,int columns) {
         placeHolder.setVisible(false);
-        //this.setBounds(100, 50, 100, 100);
         this.setBounds(placeHolder.getBounds());
-        //this.setBackground(Color.red);
         this.setBackground(placeHolder.getBackground());
         this.setBorder(placeHolder.getBorder());
 
         gridColumns = columns;
+        System.out.println(columns);
         gridCellSize = this.getBounds().width / gridColumns;
-        //gridCellSize = 60;
         System.out.println(gridCellSize);
         gridRows = this.getBounds().height / gridCellSize;
-        //gridRows = 7;
+        System.out.println(gridRows);
+    }
+
+    public void drawBlock(Graphics g){
+        for(int i=0; i<block.length; i++){
+            for(int j=0; j<block[0].length; j++){
+                if(block[i][j]){       // simplified version of block[i][j] == true
+                    g.setColor(Color.red);
+                    g.fillRect(i * gridCellSize, j * gridCellSize, gridCellSize, gridCellSize);
+                    g.setColor(Color.black);
+                    g.drawRect(i * gridCellSize, j * gridCellSize, gridCellSize, gridCellSize);
+                }
+            }
+        }
     }
     @Override
     protected void paintComponent(Graphics g) {
 
         super.paintComponent(g);
         //g.fillRect(0, 0, 50, 100);
-        for(int i=0; i<gridRows; i++){
-            for(int j=0; j<gridColumns; j++){
-                g.drawRect(i * gridCellSize, j * gridCellSize, gridCellSize, gridCellSize);
+        for(int x=0; x<32; x++){
+            for(int y=0; y<gridRows; y++){
+                g.setColor(Color.lightGray);
+                g.drawRect(x * gridCellSize, y * gridCellSize, gridCellSize, gridCellSize);
             }
         }
+        //g.drawRect(300, 900, 45, 45);
+        drawBlock(g);
     }
 }
