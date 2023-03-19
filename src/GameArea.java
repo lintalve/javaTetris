@@ -6,8 +6,7 @@ public class GameArea extends JPanel {     //this is area for drawing rectangles
     private int gridRows;
     private int gridColumns;
     private int gridCellSize;
-    private boolean[][] block = {{true, true}, {true, false}, {true, false}};
-    private int initialCoordinate;
+    private TetrisBlock block;
 
     public GameArea(JPanel placeHolder,int columns) {
         placeHolder.setVisible(false);
@@ -21,16 +20,27 @@ public class GameArea extends JPanel {     //this is area for drawing rectangles
         System.out.println(gridCellSize);
         gridRows = this.getBounds().height / gridCellSize;
         System.out.println(gridRows);
+        spawnBlock();   // initializing Game Area with fresh copy of TetrisBlock
+    }
+    public void spawnBlock(){
+        block = new TetrisBlock(new boolean[][]{{true, true}, {true,false}, {true, false}}, Color.blue);
     }
 
     public void drawBlock(Graphics g){
-        for(int i=0; i<block.length; i++){
-            for(int j=0; j<block[0].length; j++){
-                if(block[i][j]){       // simplified version of block[i][j] == true
-                    g.setColor(Color.red);
-                    g.fillRect(i * gridCellSize, j * gridCellSize, gridCellSize, gridCellSize);
+        int h = block.getHeight();
+        int w = block.getWidth();
+        boolean[][] s = block.getShape();
+        Color c = block.getColor();
+
+        for(int i=0; i<h; i++){
+            for(int j=0; j<w; j++){
+                if(s[i][j]){       // simplified version of block[i][j] == true
+                    int x = (block.getX() + i) * gridCellSize;
+                    int y = (block.getY() + j) * gridCellSize;
+                    g.setColor(c);
+                    g.fillRect(x, y, gridCellSize, gridCellSize);
                     g.setColor(Color.black);
-                    g.drawRect(i * gridCellSize, j * gridCellSize, gridCellSize, gridCellSize);
+                    g.drawRect(x, y, gridCellSize, gridCellSize);
                 }
             }
         }
