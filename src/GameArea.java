@@ -23,9 +23,21 @@ public class GameArea extends JPanel {     //this is area for drawing rectangles
         spawnBlock();   // initializing Game Area with fresh copy of TetrisBlock
     }
     public void spawnBlock(){
-        block = new TetrisBlock(new boolean[][]{{true, true}, {true,false}, {true, false}}, Color.blue);
+        block = new TetrisBlock(new boolean[][]{{true, false}, {true,false}, {true, true}}, Color.blue);
+        block.spawn(gridColumns);
     }
+    public void moveBlockDown(){
+        if(!checkBottom()) return;
+        block.moveDown();
+        repaint();
 
+    }
+    public boolean checkBottom(){
+        if(block.getBottomEdge() == gridRows) {
+            return false;
+        }
+        return true;
+    }
     public void drawBlock(Graphics g){
         int h = block.getHeight();
         int w = block.getWidth();

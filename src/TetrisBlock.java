@@ -7,8 +7,12 @@ public class TetrisBlock {
     public TetrisBlock(boolean[][] shape, Color color){
         this.shape = shape;
         this.color = color;
-        this.x = 3;
-        this.y = 2;
+        //this.x = 3;
+        //this.y = 2;
+    }
+    public void spawn(int gridWidth){
+        y = 0 - getHeight();
+        x = gridWidth/2 - getWidth()/2;
     }
     public boolean[][] getShape(){return shape;}
     public Color getColor(){return color;}
@@ -19,4 +23,5 @@ public class TetrisBlock {
     public void moveDown(){y++;}
     public void moveRight(){x++;}
     public void moveLeft(){x--;}
+    public int getBottomEdge(){return y + getHeight();}
 }

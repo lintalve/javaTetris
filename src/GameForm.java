@@ -8,6 +8,7 @@ public class GameForm extends JFrame{
 
     private JFrame frame;
     private JPanel gameAreaPlaceHolder;
+    public GameArea ga;
 
     public GameForm() {
         final int gaphWidth = 600;
@@ -22,10 +23,14 @@ public class GameForm extends JFrame{
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        GameArea ga = new GameArea(gameAreaPlaceHolder,gaphCells);
+        this.ga = new GameArea(gameAreaPlaceHolder,gaphCells);
         frame.getContentPane().add(ga, BorderLayout.CENTER);
         frame.getContentPane().setLayout(null);
+        startGame();
 
+    }
+    public void startGame(){
+        new GameThread(ga).start();
     }
 
     public static void main(String[] args) {
