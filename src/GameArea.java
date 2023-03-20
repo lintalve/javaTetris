@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.JPanel;
 
 
-public class GameArea extends JPanel {     //this is area for drawing rectangles and shit
+public class GameArea extends JPanel {     //this is area for drawing rectangles
     private int gridRows;
     private int gridColumns;
     private int gridCellSize;
@@ -23,7 +23,10 @@ public class GameArea extends JPanel {     //this is area for drawing rectangles
         spawnBlock();   // initializing Game Area with fresh copy of TetrisBlock
     }
     public void spawnBlock(){
+
         block = new TetrisBlock(new boolean[][]{{true, false}, {true,false}, {true, true}}, Color.blue);
+
+        block = new TetrisBlock(new boolean[][]{{true, true}, {true,false}, {true, false}}, Color.red);
         block.spawn(gridColumns);
     }
     public void moveBlockDown(){
@@ -62,8 +65,8 @@ public class GameArea extends JPanel {     //this is area for drawing rectangles
 
         super.paintComponent(g);
         //g.fillRect(0, 0, 50, 100);
-        for(int x=0; x<32; x++){
-            for(int y=0; y<gridRows; y++){
+        for(int y=0; y<gridRows; y++){
+            for(int x=0; x<gridColumns; x++){
                 g.setColor(Color.lightGray);
                 g.drawRect(x * gridCellSize, y * gridCellSize, gridCellSize, gridCellSize);
             }
