@@ -50,8 +50,8 @@ public class GameArea extends JPanel {     //this is area for drawing rectangles
         for(int i=0; i<h; i++){
             for(int j=0; j<w; j++){
                 if(s[i][j]){       // simplified version of block[i][j] == true
-                    int x = (block.getX() + i) * gridCellSize;
-                    int y = (block.getY() + j) * gridCellSize;
+                    int x = (block.getX() + j) * gridCellSize;
+                    int y = (block.getY() + i) * gridCellSize;
                     g.setColor(c);
                     g.fillRect(x, y, gridCellSize, gridCellSize);
                     g.setColor(Color.black);

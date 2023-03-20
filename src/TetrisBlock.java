@@ -7,8 +7,6 @@ public class TetrisBlock {
     public TetrisBlock(boolean[][] shape, Color color){  //constructor
         this.shape = shape;
         this.color = color;
-        //this.x = 3;
-        //this.y = 2;
     }
     public void spawn(int gridWidth){
         y = 0 - getHeight();

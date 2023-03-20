@@ -9,10 +9,9 @@ public class GameThread extends Thread{
             while(true) {
 
                 System.out.println("this is thread printing some stuff");
-                Thread.sleep(650);
-
+                Thread.sleep(550);
                 ga.moveBlockDown();
-                Thread.sleep(750);
+
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
