@@ -4,11 +4,9 @@ public class TetrisBlock {
     private boolean[][] shape;
     private Color color;
     private int x, y;
-    public TetrisBlock(boolean[][] shape, Color color){
+    public TetrisBlock(boolean[][] shape, Color color){  //constructor
         this.shape = shape;
         this.color = color;
-        this.x = 0;
-        this.y = 0;
     }
     public void spawn(int gridWidth){
         x = gridWidth/2 - getWidth()/2;
